@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tia Bela S2 - Temas Inesquecíveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-vibrant: #6366f1; /* Indigo vibrante */
+            --secondary-vibrant: #ec4899; /* Pink vibrante */
+        }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0f9ff;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(200, 100%, 92%, 1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(330, 100%, 92%, 1) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, hsla(200, 100% , 88%, 1) 0, transparent 50%), 
+                radial-gradient(at 0% 100%, hsla(330, 100%, 88%, 1) 0, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+        }
+        .canvas-container {
+            touch-action: none;
+            cursor: crosshair;
+        }
+        
+        /* Carousel Animations */
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        
+        .animate-scroll-left {
+            animation: scroll-left 40s linear infinite;
+            display: flex;
+            width: max-content;
+        }
+        .animate-scroll-right {
+            animation: scroll-right 40s linear infinite;
+            display: flex;
+            width: max-content;
+        }
+        .carousel-container:hover .animate-scroll-left,
+        .carousel-container:hover .animate-scroll-right {
+            animation-play-state: paused;
+        }
+
+        /* Glassmorphism effect for content areas */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Cabeçalho com cor viva */
+        .vibrant-header {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-image: none !important;
+                background-color: white !important;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
