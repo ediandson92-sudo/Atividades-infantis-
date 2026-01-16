@@ -135,25 +135,25 @@ const App: React.FC = () => {
             <div className="p-8 text-center">
               <div className="mb-6">
                 <p className="text-indigo-950 font-black text-lg mb-2">Leve o <span className="text-orange-500 underline">Pack PLUS Vitalício</span> ao invés do básico</p>
-                <p className="text-indigo-800/70 font-bold text-sm">De R$ 34,90 por apenas:</p>
+                <p className="text-indigo-800/70 font-bold text-sm">De R$ 29,90 por apenas:</p>
                 <div className="flex items-center justify-center gap-2 mt-2">
-                  <span className="text-2xl font-bold text-indigo-400 line-through">R$ 34,90</span>
+                  <span className="text-2xl font-bold text-indigo-400 line-through">R$ 39,90</span>
                   <span className="text-5xl font-black text-green-600">R$ 24,90</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-8 text-left">
                 <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
-                  <i className="fas fa-check-circle text-green-500"></i> 100 Desenhos
+                  <i className="fas fa-check-circle text-green-500"></i> 30 Desenhos
                 </div>
                 <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
                   <i className="fas fa-check-circle text-green-500"></i> Acesso Vitalício
                 </div>
                 <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
-                  <i className="fas fa-check-circle text-green-500"></i> 30 Desenhos Heróis
+                  <i className="fas fa-check-circle text-green-500"></i> 10 Desenhos Heróis
                 </div>
                 <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
-                  <i className="fas fa-check-circle text-green-500"></i> +50 Temáticos
+                  <i className="fas fa-check-circle text-green-500"></i> +20 Temáticos
                 </div>
               </div>
 
@@ -381,11 +381,11 @@ const App: React.FC = () => {
                   <div className="mb-8">
                     <div className="flex items-baseline justify-center">
                       <span className="text-2xl font-bold mr-1">R$</span>
-                      <span className="text-6xl font-black">34,90</span>
+                      <span className="text-6xl font-black">29,90</span>
                     </div>
                   </div>
                   <ul className="text-left space-y-3 mb-10 w-full">
-                    <li className="flex items-center gap-3 font-bold"><i className="fas fa-check text-pink-500"></i> 100 Desenhos no Total</li>
+                    <li className="flex items-center gap-3 font-bold"><i className="fas fa-check text-pink-500"></i> 30 Desenhos no Total</li>
                     <li className="flex items-center gap-3 font-bold"><i className="fas fa-infinity text-orange-400"></i> Acesso VITALÍCIO</li>
                   </ul>
                   <button className="w-full bg-gradient-to-r from-pink-500 to-rose-600 text-white py-5 rounded-2xl font-black text-xl hover:from-pink-600 hover:to-rose-700 transition-all shadow-xl">
