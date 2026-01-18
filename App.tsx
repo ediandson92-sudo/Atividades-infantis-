@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleGenAI } from '@google/genai';
 import { THEMES } from './constants';
 import { ColoringTheme } from './types';
@@ -25,34 +25,10 @@ const App: React.FC = () => {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [currentColor, setCurrentColor] = useState('#ef4444');
-  
-  // Estados para o Upsell
-  const [showUpsell, setShowUpsell] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(90);
-  const timerRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    if (showUpsell && timeLeft > 0) {
-      timerRef.current = window.setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      if (timerRef.current) clearInterval(timerRef.current);
-    }
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [showUpsell, timeLeft]);
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const handleBuyBasic = () => {
-    setTimeLeft(90);
-    setShowUpsell(true);
+  const handleBuy = () => {
+    // Redirecionando para o link fornecido da Kiwify
+    window.location.href = "https://pay.kiwify.com.br/uzZIJMr";
   };
 
   const selectCarouselImage = (url: string) => {
@@ -116,68 +92,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-20 bg-transparent">
-      {/* Popup de Upsell */}
-      {showUpsell && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-indigo-950/80 backdrop-blur-sm animate-fade-in no-print">
-          <div className="bg-white w-full max-w-xl rounded-[3rem] shadow-2xl overflow-hidden border-4 border-yellow-400 relative animate-bounce-in">
-            <button 
-              onClick={() => setShowUpsell(false)}
-              className="absolute top-6 right-6 text-indigo-950/40 hover:text-indigo-950 transition-colors"
-            >
-              <i className="fas fa-times text-2xl"></i>
-            </button>
-            
-            <div className="bg-gradient-to-r from-orange-500 to-yellow-500 p-6 text-center text-white">
-              <h4 className="text-xl font-black uppercase tracking-widest mb-1">Oferta Relâmpago! ⚡</h4>
-              <p className="font-bold text-white/90">Não feche ainda! Temos um presente especial para você.</p>
-            </div>
-
-            <div className="p-8 text-center">
-              <div className="mb-6">
-                <p className="text-indigo-950 font-black text-lg mb-2">Leve o <span className="text-orange-500 underline">Pack PLUS Vitalício</span> ao invés do básico</p>
-                <p className="text-indigo-800/70 font-bold text-sm">De R$ 29,90 por apenas:</p>
-                <div className="flex items-center justify-center gap-2 mt-2">
-                  <span className="text-2xl font-bold text-indigo-400 line-through">R$ 39,90</span>
-                  <span className="text-5xl font-black text-green-600">R$ 24,90</span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 mb-8 text-left">
-                <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
-                  <i className="fas fa-check-circle text-green-500"></i> 30 Desenhos
-                </div>
-                <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
-                  <i className="fas fa-check-circle text-green-500"></i> Acesso Vitalício
-                </div>
-                <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
-                  <i className="fas fa-check-circle text-green-500"></i> 10 Desenhos Heróis
-                </div>
-                <div className="bg-indigo-50 p-3 rounded-2xl flex items-center gap-2 font-bold text-indigo-900 text-xs">
-                  <i className="fas fa-check-circle text-green-500"></i> +20 Temáticos
-                </div>
-              </div>
-
-              <div className="mb-8 p-4 bg-red-50 rounded-2xl border-2 border-dashed border-red-200">
-                <p className="text-red-600 font-black text-sm mb-1 uppercase tracking-tighter">Essa oferta expira em:</p>
-                <p className="text-3xl font-black text-red-600 font-mono">{formatTime(timeLeft)}</p>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                <button className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-5 rounded-2xl font-black text-xl hover:from-green-600 hover:to-emerald-700 transition-all shadow-xl shadow-green-200 animate-pulse">
-                  SIM! QUERO O PACK PLUS (R$ 24,90)
-                </button>
-                <button 
-                  onClick={() => setShowUpsell(false)}
-                  className="text-indigo-950/40 font-bold hover:text-indigo-950 transition-colors text-sm"
-                >
-                  Não, prefiro pagar R$ 10,90 por apenas 10 desenhos
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Cabeçalho */}
       <header className="vibrant-header py-4 px-6 mb-8 no-print sticky top-0 z-50 transition-all duration-300">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
@@ -195,7 +109,7 @@ const App: React.FC = () => {
               <i className="fas fa-images mr-2"></i>Desenhos
             </a>
             <a href="#loja" className="text-white font-bold hover:bg-emerald-400 transition-all px-5 py-2 rounded-full border border-white/40 bg-white/20 text-sm shadow-xl">
-              <i className="fas fa-shopping-cart mr-2"></i>Ofertas
+              <i className="fas fa-shopping-cart mr-2"></i>Oferta Única
             </a>
           </nav>
         </div>
@@ -238,7 +152,6 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* Seção Persuasiva de Benefícios */}
           <section className="max-w-5xl mx-auto px-6 py-12 mb-12">
             <div className="bg-white/60 backdrop-blur-md rounded-[3rem] p-8 md:p-12 shadow-2xl border-b-8 border-indigo-200 text-center">
               <h2 className="text-4xl font-black text-indigo-950 mb-8 tracking-tight">Por que escolher os desenhos da Tia Bela? 🎨</h2>
@@ -264,11 +177,6 @@ const App: React.FC = () => {
                   <h4 className="font-black text-indigo-950 text-xl mb-2">Momento em Família</h4>
                   <p className="text-indigo-900/70 font-bold leading-relaxed">Pintar juntos cria memórias afetivas inesquecíveis e fortalece os laços com seus pequenos.</p>
                 </div>
-              </div>
-              <div className="mt-12 p-6 bg-indigo-50 rounded-[2rem] border-2 border-dashed border-indigo-200">
-                <p className="text-indigo-900 font-black text-lg">
-                  "Oferecer um papel em branco e um lápis de cor é dar a uma criança o poder de colorir o próprio mundo."
-                </p>
               </div>
             </div>
           </section>
@@ -303,98 +211,42 @@ const App: React.FC = () => {
               </div>
             </section>
 
-            {/* Prova Social de uma Mãe (Sessão 3) */}
-            <section className="mb-24 no-print flex flex-col md:flex-row items-center justify-center gap-12">
-              <div className="flex-1 max-w-2xl bg-white p-10 rounded-[3rem] shadow-2xl border-4 border-pink-100 flex flex-col items-center text-center relative hover:scale-[1.02] transition-transform order-2 md:order-1">
-                <div className="absolute -top-6 bg-pink-500 text-white px-6 py-2 rounded-full font-black text-sm shadow-lg">
-                  DEPOIMENTO REAL ❤️
-                </div>
-                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=150&h=150&auto=format&fit=crop" alt="Ana Luiza" className="w-24 h-24 rounded-full border-4 border-white shadow-xl mb-6 object-cover" />
-                <div className="flex gap-1 mb-4 text-yellow-400 text-xl">
-                  <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
-                </div>
-                <p className="text-indigo-950 text-xl font-bold italic leading-relaxed mb-6">
-                  "O Pedro amou os desenhos! O material em PDF tem uma qualidade incrível, as linhas são bem fortes e fáceis de colorir. Finalmente algo que tira ele do tablet por horas. Valeu cada centavo!"
-                </p>
-                <div>
-                  <h4 className="font-black text-indigo-950">Ana Luiza</h4>
-                  <p className="text-indigo-800/50 font-bold text-sm">Mãe do Pedro (4 anos)</p>
-                </div>
-              </div>
-              <div className="flex-shrink-0 w-72 h-72 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white transform rotate-3 order-1 md:order-2">
-                 <img src={NEW_IMAGE_3} className="w-full h-full object-cover" alt="Exemplo de arte" />
-              </div>
-            </section>
-
-            {/* Sessão 4: Destaque de Conteúdo */}
-            <section className="mb-24 no-print flex flex-col md:flex-row items-center justify-center gap-12">
-               <div className="flex-shrink-0 w-80 h-96 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white transform -rotate-3">
-                 <img src={NEW_IMAGE_4} className="w-full h-full object-cover" alt="Novos Temas" />
-               </div>
-               <div className="flex-1 max-w-xl text-center md:text-left">
-                  <span className="bg-orange-500 text-white px-4 py-1 rounded-full font-black text-xs uppercase mb-4 inline-block tracking-tighter">Novidades Inesquecíveis</span>
-                  <h3 className="text-4xl font-black text-indigo-950 mb-6 leading-tight">Temas que despertam a imaginação!</h3>
-                  <p className="text-indigo-900/70 font-bold text-lg mb-8 leading-relaxed">
-                    Nossas artes são criadas pensando no desenvolvimento criativo e na diversão pura. Cada traço é desenhado para ser amigável e fácil de pintar!
-                  </p>
-                  <a href="#loja" className="inline-block bg-indigo-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-xl hover:bg-indigo-700 transition-all">
-                    Ver todos os Packs
-                  </a>
-               </div>
-            </section>
-
             <section id="loja" className="mb-20">
               <div className="text-center mb-16">
-                <h2 className="text-5xl font-black text-indigo-950 mb-4">Packs de Impressão</h2>
-                <p className="text-indigo-800/70 font-bold text-xl">Desenhos em PDF de alta qualidade para pintar no papel!</p>
+                <h2 className="text-5xl font-black text-indigo-950 mb-4">Pack Especial de Impressão</h2>
+                <p className="text-indigo-800/70 font-bold text-xl">Leve todos os nossos desenhos em PDF de alta qualidade!</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto mb-16">
-                {/* Pack Pocket */}
-                <div className="bg-white rounded-[3rem] p-10 shadow-2xl border-4 border-sky-100 flex flex-col items-center text-center relative overflow-hidden group hover:border-sky-400 transition-all">
-                  <div className="bg-sky-500 text-white px-6 py-2 rounded-full text-sm font-bold absolute top-6 right-6 uppercase">Essencial</div>
-                  <h3 className="text-3xl font-black text-indigo-950 mb-4">Pack Pocket</h3>
-                  <p className="text-indigo-800/60 font-bold mb-8">10 desenhos mágicos selecionados para uma diversão rápida e criativa.</p>
-                  <div className="mb-8">
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-2xl font-bold text-indigo-950 mr-1">R$</span>
-                      <span className="text-6xl font-black text-indigo-950">10,90</span>
-                    </div>
-                  </div>
-                  <ul className="text-left space-y-3 mb-10 w-full">
-                    <li className="flex items-center gap-3 font-bold text-indigo-900"><i className="fas fa-check text-sky-500"></i> 10 Desenhos em HD</li>
-                    <li className="flex items-center gap-3 font-bold text-indigo-900"><i className="fas fa-shield-halved text-sky-400"></i> 7 Dias de Garantia</li>
-                  </ul>
-                  <button 
-                    onClick={handleBuyBasic}
-                    className="w-full bg-gradient-to-r from-sky-500 to-indigo-500 text-white py-5 rounded-2xl font-black text-xl hover:from-sky-600 hover:to-indigo-600 transition-all shadow-xl"
-                  >
-                    COMPRAR PACK 10
-                  </button>
-                </div>
-
-                {/* Pack Plus */}
+              <div className="max-w-2xl mx-auto mb-16">
                 <div className="bg-indigo-950 rounded-[3rem] p-10 shadow-2xl border-4 border-pink-500 flex flex-col items-center text-center relative overflow-hidden text-white group hover:scale-105 transition-all">
-                  <div className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold absolute top-6 right-6 animate-pulse uppercase">Mega Oferta</div>
-                  <h3 className="text-3xl font-black mb-4">Oferta PLUS</h3>
-                  <p className="text-indigo-200 font-bold mb-8">O maior acervo da Tia Bela! Diversão para o ano todo.</p>
+                  <div className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold absolute top-6 right-6 animate-pulse uppercase">OFERTA LIMITADA</div>
+                  <h3 className="text-4xl font-black mb-4">Oferta PLUS Vitalícia</h3>
+                  <p className="text-indigo-200 font-bold text-lg mb-8">O maior acervo da Tia Bela! Diversão inesquecível para o ano todo.</p>
                   <div className="mb-8">
                     <div className="flex items-baseline justify-center">
                       <span className="text-2xl font-bold mr-1">R$</span>
-                      <span className="text-6xl font-black">29,90</span>
+                      <span className="text-7xl font-black">24,90</span>
                     </div>
+                    <p className="text-pink-400 font-bold mt-2">Acesso imediato após o pagamento</p>
                   </div>
-                  <ul className="text-left space-y-3 mb-10 w-full">
-                    <li className="flex items-center gap-3 font-bold"><i className="fas fa-check text-pink-500"></i> 30 Desenhos no Total</li>
-                    <li className="flex items-center gap-3 font-bold"><i className="fas fa-infinity text-orange-400"></i> Acesso VITALÍCIO</li>
+                  <ul className="text-left space-y-4 mb-10 w-full max-w-md">
+                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-check-circle text-pink-500 text-2xl"></i> 25 Desenhos Exclusivos</li>
+                    <li className="flex items-center gap-3 font-bold text-lg bg-white/10 p-3 rounded-2xl border border-pink-500/30">
+                      <i className="fas fa-gift text-yellow-400 text-2xl"></i> 
+                      <span><span className="text-yellow-400 font-black">BÔNUS:</span> +5 Desenhos Grátis!</span>
+                    </li>
+                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-file-pdf text-sky-400 text-2xl"></i> Formato PDF pronto para Imprimir</li>
+                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-infinity text-orange-400 text-2xl"></i> Acesso VITALÍCIO</li>
                   </ul>
-                  <button className="w-full bg-gradient-to-r from-pink-500 to-rose-600 text-white py-5 rounded-2xl font-black text-xl hover:from-pink-600 hover:to-rose-700 transition-all shadow-xl">
-                    GARANTIR PACK PLUS
+                  <button 
+                    onClick={handleBuy}
+                    className="w-full bg-gradient-to-r from-pink-500 to-rose-600 text-white py-6 rounded-2xl font-black text-2xl hover:from-pink-600 hover:to-rose-700 transition-all shadow-xl shadow-pink-900/50"
+                  >
+                    QUERO O PACK + BÔNUS
                   </button>
                 </div>
               </div>
 
-              {/* Selos de Segurança */}
               <div className="max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all no-print">
                 <div className="flex items-center gap-2 font-bold text-indigo-950">
                   <i className="fas fa-lock text-emerald-500"></i> Pagamento Seguro
@@ -435,7 +287,7 @@ const App: React.FC = () => {
 
       <footer className="mt-20 py-20 bg-white/40 border-t border-white text-center">
         <span className="text-2xl font-black text-indigo-950">Tia Bela S2</span>
-        <p className="text-indigo-900 font-bold opacity-60">Packs de Desenhos em PDF a partir de R$ 10,90 - Diversão garantida!</p>
+        <p className="text-indigo-900 font-bold opacity-60">Pack com 25 + 5 Desenhos Bônus por apenas R$ 24,90 - Diversão garantida!</p>
       </footer>
     </div>
   );
