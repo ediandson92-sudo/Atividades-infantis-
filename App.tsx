@@ -27,8 +27,8 @@ const App: React.FC = () => {
   const [currentColor, setCurrentColor] = useState('#ef4444');
 
   const handleBuy = () => {
-    // Redirecionando para o link fornecido da Kiwify
-    window.location.href = "https://pay.kiwify.com.br/uzZIJMr";
+    // Redirecionando para o novo link da Kiwify para a oferta de 24,90
+    window.location.href = "https://kiwify.app/76xMIpy";
   };
 
   const selectCarouselImage = (url: string) => {
