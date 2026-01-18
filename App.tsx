@@ -26,9 +26,14 @@ const App: React.FC = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [currentColor, setCurrentColor] = useState('#ef4444');
 
-  const handleBuy = () => {
-    // Redirecionando para o novo link da Kiwify para a oferta de 24,90
-    window.location.href = "https://kiwify.app/76xMIpy";
+  const handleBuyEssencial = () => {
+    // Link para a oferta de 10,90
+    window.location.href = "https://pay.kiwify.com.br/uzZIJMr"; 
+  };
+
+  const handleBuyPlus = () => {
+    // Link atualizado da oferta de 24,90
+    window.location.href = "https://pay.kiwify.com.br/VmkvXse";
   };
 
   const selectCarouselImage = (url: string) => {
@@ -109,7 +114,7 @@ const App: React.FC = () => {
               <i className="fas fa-images mr-2"></i>Desenhos
             </a>
             <a href="#loja" className="text-white font-bold hover:bg-emerald-400 transition-all px-5 py-2 rounded-full border border-white/40 bg-white/20 text-sm shadow-xl">
-              <i className="fas fa-shopping-cart mr-2"></i>Oferta Única
+              <i className="fas fa-shopping-cart mr-2"></i>Nossas Ofertas
             </a>
           </nav>
         </div>
@@ -117,6 +122,7 @@ const App: React.FC = () => {
 
       {!selectedTheme && (
         <div className="no-print mb-16 animate-fade-in">
+          {/* Banner Principal */}
           <div className="max-w-4xl mx-auto px-4 mb-12 text-center">
              <div className="bg-white/40 p-2 rounded-[3rem] shadow-inner mb-8 border-4 border-yellow-300">
                 <div 
@@ -151,41 +157,13 @@ const App: React.FC = () => {
               ))}
             </div>
           </div>
-
-          <section className="max-w-5xl mx-auto px-6 py-12 mb-12">
-            <div className="bg-white/60 backdrop-blur-md rounded-[3rem] p-8 md:p-12 shadow-2xl border-b-8 border-indigo-200 text-center">
-              <h2 className="text-4xl font-black text-indigo-950 mb-8 tracking-tight">Por que escolher os desenhos da Tia Bela? 🎨</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                    <i className="fas fa-brain text-orange-500 text-2xl"></i>
-                  </div>
-                  <h4 className="font-black text-indigo-950 text-xl mb-2">Estimula a Criatividade</h4>
-                  <p className="text-indigo-900/70 font-bold leading-relaxed">Desenhos com traços pensados para despertar o lado artístico e a imaginação das crianças.</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
-                    <i className="fas fa-mobile-alt-slash text-emerald-500 text-2xl"></i>
-                  </div>
-                  <h4 className="font-black text-indigo-950 text-xl mb-2">Menos Telas, Mais Diversão</h4>
-                  <p className="text-indigo-900/70 font-bold leading-relaxed">Uma atividade física e manual que reduz o tempo de exposição passiva a vídeos e tablets.</p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mb-4">
-                    <i className="fas fa-hand-holding-heart text-sky-500 text-2xl"></i>
-                  </div>
-                  <h4 className="font-black text-indigo-950 text-xl mb-2">Momento em Família</h4>
-                  <p className="text-indigo-900/70 font-bold leading-relaxed">Pintar juntos cria memórias afetivas inesquecíveis e fortalece os laços com seus pequenos.</p>
-                </div>
-              </div>
-            </div>
-          </section>
         </div>
       )}
 
       <main className="max-w-7xl mx-auto px-4">
         {!selectedTheme ? (
           <>
+            {/* Galeria de Desenhos */}
             <section id="galeria" className="mb-24 mt-12">
               <div className="text-center mb-12">
                 <h2 className="text-4xl font-black text-indigo-950 mb-4">Desenhos para Colorir Online</h2>
@@ -211,56 +189,81 @@ const App: React.FC = () => {
               </div>
             </section>
 
+            {/* Seção de Ofertas */}
             <section id="loja" className="mb-20">
               <div className="text-center mb-16">
-                <h2 className="text-5xl font-black text-indigo-950 mb-4">Pack Especial de Impressão</h2>
-                <p className="text-indigo-800/70 font-bold text-xl">Leve todos os nossos desenhos em PDF de alta qualidade!</p>
+                <h2 className="text-5xl font-black text-indigo-950 mb-4">Escolha seu Pacote de Diversão</h2>
+                <p className="text-indigo-800/70 font-bold text-xl">Arquivos em PDF de alta qualidade prontos para imprimir!</p>
               </div>
 
-              <div className="max-w-2xl mx-auto mb-16">
-                <div className="bg-indigo-950 rounded-[3rem] p-10 shadow-2xl border-4 border-pink-500 flex flex-col items-center text-center relative overflow-hidden text-white group hover:scale-105 transition-all">
-                  <div className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold absolute top-6 right-6 animate-pulse uppercase">OFERTA LIMITADA</div>
-                  <h3 className="text-4xl font-black mb-4">Oferta PLUS Vitalícia</h3>
-                  <p className="text-indigo-200 font-bold text-lg mb-8">O maior acervo da Tia Bela! Diversão inesquecível para o ano todo.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16 px-4">
+                
+                {/* Oferta Essencial */}
+                <div className="bg-white rounded-[3rem] p-10 shadow-xl border-2 border-indigo-100 flex flex-col items-center text-center relative overflow-hidden group hover:shadow-2xl transition-all">
+                  <h3 className="text-3xl font-black text-indigo-950 mb-4">Pacote Essencial</h3>
+                  <p className="text-indigo-800/60 font-bold text-lg mb-8">O começo da aventura!</p>
                   <div className="mb-8">
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-2xl font-bold mr-1">R$</span>
-                      <span className="text-7xl font-black">24,90</span>
+                    <div className="flex items-baseline justify-center text-indigo-950">
+                      <span className="text-xl font-bold mr-1">R$</span>
+                      <span className="text-6xl font-black">10,90</span>
                     </div>
-                    <p className="text-pink-400 font-bold mt-2">Acesso imediato após o pagamento</p>
                   </div>
-                  <ul className="text-left space-y-4 mb-10 w-full max-w-md">
-                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-check-circle text-pink-500 text-2xl"></i> 25 Desenhos Exclusivos</li>
-                    <li className="flex items-center gap-3 font-bold text-lg bg-white/10 p-3 rounded-2xl border border-pink-500/30">
-                      <i className="fas fa-gift text-yellow-400 text-2xl"></i> 
-                      <span><span className="text-yellow-400 font-black">BÔNUS:</span> +5 Desenhos Grátis!</span>
-                    </li>
-                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-file-pdf text-sky-400 text-2xl"></i> Formato PDF pronto para Imprimir</li>
-                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-infinity text-orange-400 text-2xl"></i> Acesso VITALÍCIO</li>
+                  <ul className="text-left space-y-4 mb-10 w-full max-w-xs">
+                    <li className="flex items-center gap-3 font-bold text-indigo-900/80"><i className="fas fa-check-circle text-emerald-500 text-xl"></i> 10 Desenhos Selecionados</li>
+                    <li className="flex items-center gap-3 font-bold text-indigo-900/80"><i className="fas fa-check-circle text-emerald-500 text-xl"></i> Formato PDF de alta qualidade</li>
+                    <li className="flex items-center gap-3 font-bold text-indigo-900/80"><i className="fas fa-check-circle text-emerald-500 text-xl"></i> Envio imediato por E-mail</li>
                   </ul>
                   <button 
-                    onClick={handleBuy}
-                    className="w-full bg-gradient-to-r from-pink-500 to-rose-600 text-white py-6 rounded-2xl font-black text-2xl hover:from-pink-600 hover:to-rose-700 transition-all shadow-xl shadow-pink-900/50"
+                    onClick={handleBuyEssencial}
+                    className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-xl hover:bg-indigo-700 transition-all shadow-lg"
                   >
-                    QUERO O PACK + BÔNUS
+                    COMPRAR ESSENCIAL
                   </button>
                 </div>
+
+                {/* Oferta Plus (Destaque) */}
+                <div className="bg-indigo-950 rounded-[3rem] p-10 shadow-2xl border-4 border-pink-500 flex flex-col items-center text-center relative overflow-hidden text-white group hover:scale-105 transition-all">
+                  <div className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-bold absolute top-6 right-6 animate-pulse uppercase tracking-tighter">MELHOR ESCOLHA</div>
+                  <h3 className="text-3xl font-black mb-4">Oferta PLUS Vitalícia</h3>
+                  <p className="text-indigo-200 font-bold text-lg mb-8">A experiência completa da Tia Bela!</p>
+                  <div className="mb-8">
+                    <div className="flex items-baseline justify-center">
+                      <span className="text-xl font-bold mr-1">R$</span>
+                      <span className="text-7xl font-black">24,90</span>
+                    </div>
+                  </div>
+                  <ul className="text-left space-y-4 mb-10 w-full max-w-xs">
+                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-check-circle text-pink-500 text-xl"></i> 25 Desenhos Exclusivos</li>
+                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-gift text-yellow-400 text-xl"></i> <span>+5 Desenhos Bônus Grátis</span></li>
+                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-infinity text-orange-400 text-xl"></i> Acesso VITALÍCIO</li>
+                    <li className="flex items-center gap-3 font-bold text-lg"><i className="fas fa-star text-sky-400 text-xl"></i> Suporte Prioritário</li>
+                  </ul>
+                  <button 
+                    onClick={handleBuyPlus}
+                    className="w-full bg-gradient-to-r from-pink-500 to-rose-600 text-white py-6 rounded-2xl font-black text-2xl hover:from-pink-600 hover:to-rose-700 transition-all shadow-xl shadow-pink-900/50"
+                  >
+                    QUERO O PACK PLUS
+                  </button>
+                </div>
+
               </div>
 
+              {/* Selos de Confiança */}
               <div className="max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all no-print">
                 <div className="flex items-center gap-2 font-bold text-indigo-950">
                   <i className="fas fa-lock text-emerald-500"></i> Pagamento Seguro
                 </div>
                 <div className="flex items-center gap-2 font-bold text-indigo-950">
-                  <i className="fas fa-paper-plane text-sky-500"></i> Entrega Imediata
+                  <i className="fas fa-paper-plane text-sky-500"></i> Entrega Digital Imediata
                 </div>
                 <div className="flex items-center gap-2 font-bold text-indigo-950">
-                  <i className="fas fa-shield-alt text-orange-500"></i> Satisfação Garantida
+                  <i className="fas fa-shield-alt text-orange-500"></i> 7 Dias de Garantia
                 </div>
               </div>
             </section>
           </>
         ) : (
+          /* Editor de Colorir */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-8 animate-fade-in">
             <div className="lg:col-span-3">
               <button 
@@ -287,7 +290,7 @@ const App: React.FC = () => {
 
       <footer className="mt-20 py-20 bg-white/40 border-t border-white text-center">
         <span className="text-2xl font-black text-indigo-950">Tia Bela S2</span>
-        <p className="text-indigo-900 font-bold opacity-60">Pack com 25 + 5 Desenhos Bônus por apenas R$ 24,90 - Diversão garantida!</p>
+        <p className="text-indigo-900 font-bold opacity-60">Pack de Colorir - Diversão Inesquecível para todas as idades.</p>
       </footer>
     </div>
   );
